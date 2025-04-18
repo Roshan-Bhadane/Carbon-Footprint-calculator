@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-leaf"></i> Carbon Footprint Calculator</h1>
+            <p>Calculate your environmental impact and discover ways to reduce it</p>
+        </header>
+
+        <main>
+            <div class="progress-indicator">
+                <div class="progress-step active" data-step="1">Transportation</div>
+                <div class="progress-step" data-step="2">Energy</div>
+                <div class="progress-step" data-step="3">Diet</div>
+                <div class="progress-step" data-step="4">Waste</div>
+                <div class="progress-step" data-step="5">Results</div>
+            </div>
+
+            <form id="carbonForm">
+                <section class="form-section active" id="transportation-section">
+                    <h2><i class="fas fa-car"></i> Transportation</h2>
+                    <div class="input-group">
+                        <label for="carMiles">Car Miles (per year):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="carMiles" min="0" step="1" placeholder="Enter miles">
+                            <span class="input-icon"><i class="fas fa-road"></i></span>
+                        </div>
+                        <div class="input-info">
+                            <select id="carType">
+                                <option value="gasoline">Gasoline Car</option>
+                                <option value="hybrid">Hybrid Car</option>
+                                <option value="electric">Electric Car</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="publicTransit">Public Transit Miles (per year):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="publicTransit" min="0" step="1" placeholder="Enter miles">
+                            <span class="input-icon"><i class="fas fa-bus"></i></span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="airMiles">Air Travel Miles (per year):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="airMiles" min="0" step="1" placeholder="Enter miles">
+                            <span class="input-icon"><i class="fas fa-plane"></i></span>
+                        </div>
+                        <div class="input-info">
+                            <select id="flightClass">
+                                <option value="economy">Economy Class</option>
+                                <option value="business">Business Class</option>
+                                <option value="first">First Class</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                </section>
+
+                <section class="form-section" id="energy-section">
+                    <h2><i class="fas fa-bolt"></i> Energy Usage</h2>
+                    <div class="input-group">
+                        <label for="electricity">Electricity Usage (kWh per month):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="electricity" min="0" step="1" placeholder="Enter kWh">
+                            <span class="input-icon"><i class="fas fa-plug"></i></span>
+                        </div>
+                        <div class="input-info">
+                            <select id="energySource">
+                                <option value="grid">Grid Electricity</option>
+                                <option value="solar">Solar Power</option>
+                                <option value="wind">Wind Power</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="naturalGas">Natural Gas Usage (therms per month):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="naturalGas" min="0" step="0.1" placeholder="Enter therms">
+                            <span class="input-icon"><i class="fas fa-fire"></i></span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="heatingType">Home Heating Type:</label>
+                        <select id="heatingType">
+                            <option value="naturalGas">Natural Gas</option>
+                            <option value="electric">Electric</option>
+                            <option value="oil">Oil</option>
+                            <option value="wood">Wood</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </section>
+
+                <section class="form-section" id="diet-section">
+                    <h2><i class="fas fa-utensils"></i> Diet</h2>
+                    <div class="input-group">
+                        <label for="meatMeals">Meat-based Meals (per week):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="meatMeals" min="0" max="21" step="1" placeholder="Enter meals">
+                            <span class="input-icon"><i class="fas fa-drumstick-bite"></i></span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="dairyProducts">Dairy Products (per week):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="dairyProducts" min="0" step="1" placeholder="Enter servings">
+                            <span class="input-icon"><i class="fas fa-cheese"></i></span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="dietType">Primary Diet Type:</label>
+                        <select id="dietType">
+                            <option value="omnivore">Omnivore</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </section>
+
+                <section class="form-section" id="waste-section">
+                    <h2><i class="fas fa-trash"></i> Waste</h2>
+                    <div class="input-group">
+                        <label for="recycling">Recycling Rate (%):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="recycling" min="0" max="100" step="1" placeholder="Enter percentage">
+                            <span class="input-icon"><i class="fas fa-recycle"></i></span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="composting">Composting Rate (%):</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="composting" min="0" max="100" step="1" placeholder="Enter percentage">
+                            <span class="input-icon"><i class="fas fa-seedling"></i></span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="wasteReduction">Waste Reduction Practices:</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="reusableBags"> Use reusable shopping bags
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="reusableBottles"> Use reusable water bottles
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="bulkBuying"> Buy in bulk to reduce packaging
+                            </label>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                        <button type="submit" class="calculate-btn">Calculate <i class="fas fa-calculator"></i></button>
+                    </div>
+                </section>
+            </form>
+
+            <div id="results" class="hidden">
+                <h2><i class="fas fa-chart-pie"></i> Your Carbon Footprint Results</h2>
+                <div class="results-container">
+                    <div class="total-footprint">
+                        <h3>Total Annual Carbon Footprint</h3>
+                        <p id="totalFootprint">0</p>
+                        <p class="unit">kg CO2e/year</p>
+                        <div class="comparison">
+                            <p>Compared to average:</p>
+                            <div class="comparison-bar">
+                                <div class="bar-fill" id="comparisonBar"></div>
+                            </div>
+                            <p id="comparisonText"></p>
+                        </div>
+                        <div class="carbon-equivalents">
+                            <h4>Equivalent to:</h4>
+                            <ul id="equivalentsList"></ul>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="footprintChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="suggestions">
+                    <h3><i class="fas fa-lightbulb"></i> Ways to Reduce Your Footprint</h3>
+                    <ul id="suggestionsList"></ul>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="share-btn" id="shareResults">
+                        <i class="fas fa-share-alt"></i> Share Results
+                    </button>
+                    <button class="save-btn" id="saveResults">
+                        <i class="fas fa-save"></i> Save Results
+                    </button>
+                    <button class="print-btn" id="printResults">
+                        <i class="fas fa-print"></i> Print Results
+                    </button>
+                </div>
+
+                <div class="carbon-timeline">
+                    <h3><i class="fas fa-history"></i> Your Carbon Reduction Timeline</h3>
+                    <div class="timeline-container">
+                        <canvas id="timelineChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 Carbon Footprint Calculator | Data sources: EPA, IPCC</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link"><i class="fas fa-info-circle"></i> About</a>
+                <a href="#" class="footer-link"><i class="fas fa-book"></i> Resources</a>
+                <a href="#" class="footer-link"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="#" class="footer-link"><i class="fas fa-question-circle"></i> FAQ</a>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
